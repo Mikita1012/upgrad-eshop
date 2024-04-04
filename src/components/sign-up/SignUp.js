@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { TextField, Button, Container, Typography } from '@mui/material';
+// import makeStyles from '@mui/styles';
+// // import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
+import '../sign-up/SignUp.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import NavigationBar from '../navigationbar/NavigationBar';
-import { click } from '@testing-library/user-event/dist/click';
+import { Link} from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { ArrowBackIosNew } from '@mui/icons-material';
 
-const useStyles = makeStyles((theme) => ({
-  formContainer: {
-    marginTop: '32px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '2px',
-    border: '2px solid #ccc',
-    borderRadius: '16px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    backgroundColor: '#CCCC',
-    // backgroundColor: 'grey',
-  },
-  textField: {
-    width: '25rem',
-  },
-  
-  button: {
-    margin: '16px',
-    width: '25ch',
-  },
+const useStyles = styled((theme) => ({
+  // formContainer: {
+  //   marginTop: '32px',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   padding: '2px',
+  //   border: '2px solid #ccc',
+  //   borderRadius: '16px',
+  //   marginLeft: 'auto',
+  //   marginRight: 'auto',
+  //   backgroundColor: '#CCCC',
+  //   // backgroundColor: 'grey',
+  // },
+  // textField: {
+  //   width: '25rem',
+  // },
+
+  // button: {
+  //   margin: '16px',
+  //   width: '25ch',
+  // },
 }));
 
 const SignUp = () => {
@@ -122,77 +127,82 @@ const SignUp = () => {
 
   return (
     <>
-    <Container>
-      <form className={classes.formContainer} onSubmit={handleSubmit}>
-      <PermIdentityIcon sx={{borderRadius: '100px',padding: '15px', backgroundColor: 'green', color: 'white'}}/>
-        <Typography variant="h4" gutterBottom>
-          Sign Up 
-        </Typography>
-        <TextField
-          className={classes.textField}
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          error={!!formErrors.name}
-          helperText={formErrors.name}
-          required
-          
-        />
-        <TextField
-          className={classes.textField}
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          error={!!formErrors.email}
-          helperText={formErrors.email}
-          style={{marginTop: '10px'}}
-          required
-        />
-        <TextField
-          className={classes.textField}
-          label="Username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          error={!!formErrors.username}
-          helperText={formErrors.username}
-          style={{marginTop: '10px'}}
-          required
-        />
-        <TextField
-          className={classes.textField}
-          label="Contact Number"
-          name="contactNumber"
-          type="tel"
-          value={formData.contactNumber}
-          onChange={handleChange}
-          error={!!formErrors.contactNumber}
-          helperText={formErrors.contactNumber}
-          style={{marginTop: '10px'}}
-          required
-        />
-        <TextField
-          className={classes.textField}
-          label="Password"
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-          error={!!formErrors.password}
-          helperText={formErrors.password}
-          style={{marginTop: '10px', marginBottom: '6px'}}
-          required
-        />
-        <Button className={classes.button} variant="contained" color="primary" type="submit">
-          Sign Up
-        </Button>
-      </form>
+      <Container>
+        <Link to='/'>
+          <Button variant='outlined' style={{ backgroundColor: '#9A7C5D', color: 'black', marginTop:'10px', border: 'none' }}>BACK</Button>
+          {/* <ArrowBackIosNew style={{ textAlign: 'center', backgroundColor: '#9A7C5D', color: 'black',, borderRadius: '90px', padding: '10px' }}></ArrowBackIosNew> */}
+        </Link>
+
+        <form className="formContainer" onSubmit={handleSubmit}>
+          <PermIdentityIcon sx={{ borderRadius: '100px', padding: '15px', backgroundColor: 'green', color: 'white' }} />
+          <Typography variant="h4" gutterBottom>
+            SIGN UP
+          </Typography>
+          <TextField
+            className="textField"
+            label="Name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            error={!!formErrors.name}
+            helperText={formErrors.name}
+            required
+
+          />
+          <TextField
+            className="textField"
+            label="Email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={!!formErrors.email}
+            helperText={formErrors.email}
+            style={{ marginTop: '10px' }}
+            required
+          />
+          <TextField
+            className="textField"
+            label="Username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            error={!!formErrors.username}
+            helperText={formErrors.username}
+            style={{ marginTop: '10px' }}
+            required
+          />
+          <TextField
+            className="textField"
+            label="Contact Number"
+            name="contactNumber"
+            type="tel"
+            value={formData.contactNumber}
+            onChange={handleChange}
+            error={!!formErrors.contactNumber}
+            helperText={formErrors.contactNumber}
+            style={{ marginTop: '10px' }}
+            required
+          />
+          <TextField
+            className="textField"
+            label="Password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            error={!!formErrors.password}
+            helperText={formErrors.password}
+            style={{ marginTop: '10px', marginBottom: '6px' }}
+            required
+          />
+          <Button className="signUpButton" variant="contained" color="primary" type="submit">
+            Sign Up
+          </Button>
+        </form>
       </Container>
-   </>
-      );
+    </>
+  );
 };
 
 export default SignUp;

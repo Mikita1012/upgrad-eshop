@@ -1,14 +1,9 @@
 import { Fragment } from "react";
 import '../src/common/Common.css'
-import DeleteIcon from '@mui/icons-material/Delete';
-import { purple } from "@mui/material/colors";
-import '@fontsource/roboto/300.css';
-
 import SignUp from "./components/sign-up/SignUp";
+import SignIn from "./components/signin/SignIn";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavigationBar from "./components/navigationbar/NavigationBar";
-import { Switch } from "react-router-dom/cjs/react-router-dom.min";
-
+import LandingPage from "./components/LandingPage/LandingPage";
 
 
 function App() {
@@ -16,16 +11,12 @@ function App() {
     <Fragment>
       {/* <h1>Welcome to ESHOP</h1>
       <DeleteIcon sx={{color: purple[500]}}/> */}
-      <NavigationBar />
       <Router>
-        <Switch>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/signin">
-            <SignUp />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/signup" Component = {SignUp} />
+          <Route exact path="/" Component={LandingPage} />
+          <Route exact path="/signin" Component={SignIn} />
+        </Routes>
 
       </Router>
 
@@ -33,5 +24,6 @@ function App() {
     </Fragment>
   );
 }
+
 
 export default App;
