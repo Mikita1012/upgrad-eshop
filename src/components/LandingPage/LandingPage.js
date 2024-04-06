@@ -4,7 +4,7 @@ import '/Users/NTS-MikitaSh/Documents/REACT/upgrad-eshop/src/common/Common.css'
 
 function LandingPage() {
   return (
-    <div>
+    <div className='homeScreen'>
         <NavigationBar />
     </div>
   )

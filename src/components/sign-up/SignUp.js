@@ -2,40 +2,12 @@ import React, { useState } from 'react';
 import { TextField, Button, Container, Typography } from '@mui/material';
 // import makeStyles from '@mui/styles';
 // // import { makeStyles } from '@mui/styles';
-import { styled } from '@mui/material/styles';
 import '../sign-up/SignUp.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import NavigationBar from '../navigationbar/NavigationBar';
-import { Link} from 'react-router-dom';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ArrowBackIosNew } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
-const useStyles = styled((theme) => ({
-  // formContainer: {
-  //   marginTop: '32px',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   padding: '2px',
-  //   border: '2px solid #ccc',
-  //   borderRadius: '16px',
-  //   marginLeft: 'auto',
-  //   marginRight: 'auto',
-  //   backgroundColor: '#CCCC',
-  //   // backgroundColor: 'grey',
-  // },
-  // textField: {
-  //   width: '25rem',
-  // },
 
-  // button: {
-  //   margin: '16px',
-  //   width: '25ch',
-  // },
-}));
-
-const SignUp = () => {
-  const classes = useStyles();
+function SignUp({ createUserHandler }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,6 +15,7 @@ const SignUp = () => {
     contactNumber: '',
     password: '',
   });
+
   const [formErrors, setFormErrors] = useState({
     name: '',
     email: '',
@@ -53,19 +26,23 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
       [name]: value,
-    }));
-    // Reset validation error when user starts typing
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: '',
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUserHandler(formData);
+    setFormData({
+      name: '',
+      email: '',
+      username: '',
+      contactNumber: '',
+      password: '',
+    })
+
     // Perform validation before submission
     let errors = {};
     let isValid = true;
@@ -125,11 +102,12 @@ const SignUp = () => {
     }
   };
 
+
   return (
     <>
       <Container>
         <Link to='/'>
-          <Button variant='outlined' style={{ backgroundColor: '#9A7C5D', color: 'black', marginTop:'10px', border: 'none' }}>BACK</Button>
+          <Button variant='outlined' style={{ backgroundColor: '#9A7C5D', color: 'black', marginTop: '10px', border: 'none' }}>BACK</Button>
           {/* <ArrowBackIosNew style={{ textAlign: 'center', backgroundColor: '#9A7C5D', color: 'black',, borderRadius: '90px', padding: '10px' }}></ArrowBackIosNew> */}
         </Link>
 
@@ -142,6 +120,7 @@ const SignUp = () => {
             className="textField"
             label="Name"
             name="name"
+            sx={{ fontSize: '10px' }}
             value={formData.name}
             onChange={handleChange}
             error={!!formErrors.name}

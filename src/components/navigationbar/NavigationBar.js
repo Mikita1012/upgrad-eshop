@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { ShoppingCart } from '@mui/icons-material';
@@ -11,11 +10,6 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
-// import { useNavigation } from 'react-router-dom';
-
-
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavigationBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -85,14 +79,61 @@ function NavigationBar() {
 
 
 
-
+  let isLoggedIn = true;
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: '#100E06' }} >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
+    <React.Fragment>
+      {isLoggedIn ? (
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static" style={{ backgroundColor: '#100E06' }} >
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+                <ShoppingCart sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: 'none', md: 'flex' },
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    letterSpacing: '.3rem',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  ESHOP
+                </Typography>
+
+                <Search>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </Search>
+                <div style={{ marginLeft: 'auto' }}>
+                  <Link to='/'>
+                    <Button variant='contained' sx={{ backgroundColor: '#9A7C5D', textDecoration: 'none' }}
+                    >LOGOUT
+                    </Button>
+                  </Link>
+                </div>
+              </Toolbar>
+
+            </Container>
+          </AppBar>
+        </Box>
+      ) : (
+        <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" style={{ backgroundColor: '#100E06' }} >
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
               <ShoppingCart sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
               <Typography
                 variant="h6"
@@ -121,21 +162,25 @@ function NavigationBar() {
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </Search>
-              <div style={{ marginLeft: 'auto'}}>
-              <Link to='/signin' >
-                <Button variant='text'>
-                  Sign IN</Button>
-              </Link>
-              <Link to='/signup'>
-                <Button variant='contained' sx={{ backgroundColor: '#9A7C5D', textDecoration: 'none'}}
-                >Sign up</Button>
-              </Link>
+              <div style={{ marginLeft: 'auto' }}>
+                <Link to='/signin' >
+                  <Button variant='text'>
+                    Sign IN</Button>
+                </Link>
+                <Link to='/signup'>
+                  <Button variant='contained' sx={{ backgroundColor: '#9A7C5D', textDecoration: 'none' }}
+                  >Sign up</Button>
+                </Link>
               </div>
-          </Toolbar>
+            </Toolbar>
 
-        </Container>
-      </AppBar>
-    </Box>
+          </Container>
+        </AppBar>
+      </Box> 
+      )}
+    </React.Fragment>
+
+
   );
 }
 export default NavigationBar;
